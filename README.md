@@ -18,7 +18,7 @@ First setup system requirements using this blog post-> [blog_link](https://dev.t
 1. Clone the repo
 
 ```sh
-git clone git@github.com:shivamsoni00/flipcpi.git
+git clone git@github.com:shivamsoni00/transfergold.git
 ```
 
 2. Change into the project directory you'd like to run
