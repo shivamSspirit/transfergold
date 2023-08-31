@@ -1,4 +1,4 @@
-# transfergold
+# Transfergoldtoken
 transfer gold(fungible spl tokens) tokens to one account to another using solana cross program invocation
 
 ## How to Run this program
