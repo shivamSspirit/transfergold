@@ -129,14 +129,13 @@ describe("spl-token-minter", () => {
       .rpc({ skipPreflight: true });
     console.log("Your transaction signature", tx);
 
-     // Get the minted token amount on the associated token account
-     const minted: Buffer | ParsedAccountData | number = (await program.provider.connection.getParsedAccountInfo(tokenAccount.address)).value.data;
-     const parsedAccountData = minted as ParsedAccountData;
-     let tokens: ParsedAccountData | number;
-     tokens = parsedAccountData;
-     const pops = tokens as ParsedAccountData;
-     console.log("minted token amounts", pops.parsed.info.tokenAmount.amount / LAMPORTS_PER_SOL)
-     assert.equal(pops.parsed.info.tokenAmount.amount / LAMPORTS_PER_SOL, 199);
+    // Get the minted token amount on the associated token account
+    const tokenAmount = (await getAccount(connection, tokenAccount.address)).amount;
+    console.log("tokenAmount", tokenAmount);
+    // Converting tokenAmount to a regular number using Number()
+    let tokens = Number(tokenAmount);
+    console.log("minted token amounts", tokens / LAMPORTS_PER_SOL);
+    assert.equal(tokens / LAMPORTS_PER_SOL, 199);
   });
 
 
