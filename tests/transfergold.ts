@@ -193,6 +193,10 @@ it("Transfer some tokens to another wallet!", async () => {
   console.log("Your transaction signature", tx);
 });
 
+  const recepienttokenAmount = (await getAccount(connection, receipientTokenAccount.address)).amount;
+  console.log("recipienttokenAmount", recepienttokenAmount);
+  let tokens = Number(recepienttokenAmount);
+  assert.equal(tokens / LAMPORTS_PER_SOL, 54);
 
 });
 
