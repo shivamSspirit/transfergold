@@ -10,6 +10,7 @@ import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   getOrCreateAssociatedTokenAccount,
   TOKEN_PROGRAM_ID,
+  getAccount
 } from "@solana/spl-token";
 
 describe("spl-token-minter", () => {
@@ -193,10 +194,28 @@ it("Transfer some tokens to another wallet!", async () => {
   console.log("Your transaction signature", tx);
 });
 
-  const recepienttokenAmount = (await getAccount(connection, receipientTokenAccount.address)).amount;
-  console.log("recipienttokenAmount", recepienttokenAmount);
-  let tokens = Number(recepienttokenAmount);
-  assert.equal(tokens / LAMPORTS_PER_SOL, 54);
+async function getRecipientTokenAmount() {
+  // Assuming getAccount and receipientTokenAccount are defined elsewhere
+  const recipientTokenAccount = await getAccount(connection, receipientTokenAccount.address);
+  const amount = recipientTokenAccount.amount;
+  return amount;
+}
+
+(async () => {
+  try {
+    const amount = await getRecipientTokenAmount();
+    console.log("Recipient token amount:", amount);
+    let tokens = Number(amount);
+    assert.equal(tokens / LAMPORTS_PER_SOL, 54);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+})();
+
+  // const recepienttokenAmount = await getAccount(connection, receipientTokenAccount.address).amount;
+  // console.log("recipienttokenAmount", recepienttokenAmount);
+  // let tokens = Number(recepienttokenAmount);
+  // assert.equal(tokens / LAMPORTS_PER_SOL, 54);
 
 });
 

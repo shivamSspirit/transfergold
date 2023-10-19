@@ -1,7 +1,7 @@
 import "../libraries/spl_token.sol";
 import "../libraries/mpl_metadata.sol";
 
-@program_id("7JDt5Le8sYFKj5MwgEpyiCRctvNoyywZsyd7pKs6xfNz")
+@program_id("29xSEMAjUToGKYuoZzUHW8AsfkkPrRhnJVn8WKoarMtv")
 contract spl_token_minter {
     @payer(payer)
     constructor() {}
