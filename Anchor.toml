@@ -3,7 +3,7 @@ seeds = false
 skip-lint = false
 
 [programs.devnet]
-transfergold = "29xSEMAjUToGKYuoZzUHW8AsfkkPrRhnJVn8WKoarMtv"
+spl_token_minter = "8gyzRD6DgQo7twC8mnieALv8EbD9Ait3U1hMHKvueoWo"
 
 [registry]
 url = "https://api.apr.dev"
