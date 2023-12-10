@@ -3,7 +3,7 @@ seeds = false
 skip-lint = false
 
 [programs.devnet]
-spl_token_minter = "8gyzRD6DgQo7twC8mnieALv8EbD9Ait3U1hMHKvueoWo"
+spl_token_minter = "HJhLRFu72TGNHUbeFoWhTPozP8EHQ4KJ3vqP7mPRD4n3"
 
 [registry]
 url = "https://api.apr.dev"

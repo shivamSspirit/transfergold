@@ -31,8 +31,7 @@ describe("Transfer Tokens", () => {
     "https://res.cloudinary.com/ddwkxn8ak/image/upload/v1698823073/solangsol/Course1_mhz1c1.png";
 
   let tokenAccount;
-
-
+  let recepienttokenAmount;
 
 
   it("Is initialized!", async () => {
@@ -77,8 +76,6 @@ describe("Transfer Tokens", () => {
 
   it("Mint some tokens to your wallet!", async () => {
     // Wallet's associated token account address for mint
-
-
     console.log("wallet",wallet)
     tokenAccount = await getOrCreateAssociatedTokenAccount(
       connection,
@@ -86,8 +83,6 @@ describe("Transfer Tokens", () => {
       mintKeypair.publicKey, // mint
       wallet.publicKey // owner
     );
-
-
 
     console.log("associated token account:", tokenAccount)
 
@@ -104,7 +99,7 @@ describe("Transfer Tokens", () => {
     console.log("Your transaction signature", tx);
 
     // console.log("Your transaction signature", tx);
-    const recepienttokenAmount = (await getAccount(connection, tokenAccount.address)).amount;
+     recepienttokenAmount = (await getAccount(connection, tokenAccount.address)).amount;
     console.log("recipienttokenAmount", recepienttokenAmount);
     let tokens = Number(recepienttokenAmount);
     console.log("tkens", tokens)
@@ -114,21 +109,21 @@ describe("Transfer Tokens", () => {
 
 async function getRecipientTokenAmount() {
   // Assuming getAccount and receipientTokenAccount are defined elsewhere
-  const recipientTokenAccount = await getAccount(connection, receipientTokenAccount.address);
+  const recipientTokenAccount = await getAccount(connection, recepienttokenAmount.address);
   const amount = recipientTokenAccount.amount;
   return amount;
 }
 
-(async () => {
-  try {
-    const amount = await getRecipientTokenAmount();
-    console.log("Recipient token amount:", amount);
-    let tokens = Number(amount);
-    assert.equal(tokens / LAMPORTS_PER_SOL, 54);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-})();
+// (async () => {
+//   try {
+//     const amount = await getRecipientTokenAmount();
+//     console.log("Recipient token amount:", amount);
+//     let tokens = Number(amount);
+//     assert.equal(tokens / LAMPORTS_PER_SOL, 54);
+//   } catch (error) {
+//     console.error("Error:", error);
+//   }
+// })();
 
   // const recepienttokenAmount = await getAccount(connection, receipientTokenAccount.address).amount;
   // console.log("recipienttokenAmount", recepienttokenAmount);
@@ -136,13 +131,6 @@ async function getRecipientTokenAmount() {
   // assert.equal(tokens / LAMPORTS_PER_SOL, 54);
 
   it("Transfer some tokens to another wallet!", async () => {
-    // Wallet's associated token account address for mint
-    // const tokenAccount = await getOrCreateAssociatedTokenAccount(
-    //   connection,
-    //   wallet.payer, // payer
-    //   mintKeypair.publicKey, // mint
-    //   wallet.publicKey // owner
-    // );
 
     const receipient = anchor.web3.Keypair.generate();
     const receipientTokenAccount = await getOrCreateAssociatedTokenAccount(
@@ -173,77 +161,6 @@ async function getRecipientTokenAmount() {
     console.log("bachehuetoken", bachehuetoken);
     let tokensss = Number(bachehuetoken);
     console.log("tkens", tokensss)
-
-
-    //  assert.equal(tokens / LAMPORTS_PER_SOL, 150);
-    // });
   });
-
-
-
-
-
-
-  console.log("helo")
-
-
-  // it("Transfer some tokens to another wallet!", async () => {
-  //   // Wallet's associated token account address for mint
-  //   const tokenAccount = await getOrCreateAssociatedTokenAccount(
-  //     connection,
-  //     wallet.payer, // payer
-  //     mintKeypair.publicKey, // mint
-  //     wallet.publicKey // owner
-  //   );
-
-  //   const receipient = anchor.web3.Keypair.generate();
-  //   const receipientTokenAccount = await getOrCreateAssociatedTokenAccount(
-  //     connection,
-  //     wallet.payer, // payer
-  //     mintKeypair.publicKey, // mint account
-  //     receipient.publicKey // owner account
-  //   );
-
-  //  // console.log("receipientTokenAccount",receipientTokenAccount)
-
-  //   const tx = await program.methods
-  //     .transferTokens(
-  //       tokenAccount.address,
-  //       receipientTokenAccount.address,
-  //       new anchor.BN(54000000000)
-  //     )
-  //     .accounts({ dataAccount: dataAccount.publicKey })
-  //     .remainingAccounts([
-  //       {
-  //         pubkey: wallet.publicKey,
-  //         isWritable: true,
-  //         isSigner: true,
-  //       },
-  //       {
-  //         pubkey: mintKeypair.publicKey,
-  //         isWritable: false,
-  //         isSigner: false,
-  //       },
-  //       {
-  //         pubkey: tokenAccount.address,
-  //         isWritable: true,
-  //         isSigner: false,
-  //       },
-  //       {
-  //         pubkey: receipientTokenAccount.address,
-  //         isWritable: true,
-  //         isSigner: false,
-  //       },
-  //     ])
-  //     .rpc();
-  //   console.log("Your transaction signature", tx);
-
-  //   const recepienttokenAmount = (await getAccount(connection, receipientTokenAccount.address)).amount;
-  //   console.log("recipienttokenAmount", recepienttokenAmount);
-  //   let tokens = Number(recepienttokenAmount);
-
-  //   assert.equal(tokens / LAMPORTS_PER_SOL, 54);
-
-
 
 });
